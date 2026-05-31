@@ -66,12 +66,12 @@ print("Shape final 2D:", img2d.shape)
 
 # %%
 # ===================================
-# 2. DEFINIR ÁREA DE INTERÉS (ROI)
+# 2. DEFINE AREA OF INTEREST (ROI)
 # ===================================
 
-# Define manualmente el ROI (en píxeles)
-# y0:y1 -> filas
-# x0:x1 -> columnas
+# Manually define the ROI (in pixels)
+# y0:y1 -> rows
+# x0:x1 -> columns
 y0, y1 = 17389, 14982
 x0, x1 = 12284, 18240
 
@@ -88,23 +88,23 @@ print("Shape del ROI:", roi.shape)
 
 # %%
 # ===================================
-# 3. CORTAR EN PATCHES Y GUARDAR
+# 3. CUT INTO PATCHES AND STORE
 # ===================================
 
-# Tamaño del patch
+# Patch size
 patch_size = 256
 
-# Carpeta de salida
+# Output folder
 output_dir = r"your_output_directory"
 os.makedirs(output_dir, exist_ok=True)
 
-# Asegurar que el ROI sea divisible por 256
+# Ensure that the ROI is divisible by 256
 h, w = roi.shape
 h_crop = (h // patch_size) * patch_size
 w_crop = (w // patch_size) * patch_size
 roi_cropped = roi[:h_crop, :w_crop]
 
-# Crear patches
+# Create patches
 patches = view_as_blocks(
     roi_cropped,
     block_shape=(patch_size, patch_size)
